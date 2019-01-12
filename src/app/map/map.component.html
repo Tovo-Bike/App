@@ -1,0 +1,54 @@
+ <div class="map">
+  <agm-map 
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+    [disableDefaultUI]="false"
+    [zoomControl]="false"
+    (mapClick)="mapClicked($event)">
+
+    <agm-circle [latitude]="lat" [longitude]="lng" 
+        [radius]="1000"
+        [fillColor]="'orange'"
+        [circleDraggable]="false"
+        [editable]="false">
+    </agm-circle>
+
+    <agm-marker 
+        *ngFor="let m of markers; let i = index"
+        (markerClick)="clickedMarker(m.label, i)"
+        [latitude]="m.lat"
+        [longitude]="m.lng"
+        [label]="m.label"
+        [markerDraggable]="m.draggable"
+        (dragEnd)="markerDragEnd(m, $event)">
+        
+      <agm-info-window>
+        <strong>InfoWindow content</strong>
+      </agm-info-window>
+      
+
+    </agm-marker>
+  </agm-map>
+</div>
+
+<div class="control_bar_container">
+  <div class="rider_bar">
+    <mat-slide-toggle
+      [color]="'orange'"
+      [checked]="checked"
+      [disabled]="disabled">
+      <p class="rider"> rider mode</p>
+    </mat-slide-toggle>
+  </div>
+</div>
+
+<div class="input_container">
+    <mat-form-field class="input">
+      <input matInput type="text" placeholder="input search" [(ngModel)]="value">
+    </mat-form-field>
+    <button mat-icon-button class="button">
+        <mat-icon>search</mat-icon>
+    </button>
+</div>
+  

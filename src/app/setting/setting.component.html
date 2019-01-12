@@ -1,0 +1,89 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Frequent free time segment
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div>
+      <mat-expansion-panel [expanded]="step === 1" (opened)="step = 1">
+        <mat-expansion-panel-header>
+          Add
+        </mat-expansion-panel-header>
+        <div class="title">
+          <mat-form-field [color] = "primary">
+            <mat-select placeholder="starting time" [(ngModel)]="selectedStart" name="time">
+              <mat-option *ngFor="let time of times" [value]="time.viewValue">
+                {{time.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="end time" [(ngModel)]="selectedEnd">
+              <mat-option *ngFor="let time of times | slice: selectedStart:24; let i = index;" [value]="time.viewValue">
+                {{time.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="save">
+          <button mat-button (click)="add()"> Save </button>
+        </div>
+      </mat-expansion-panel>
+    </div>
+    <div>
+      <p>
+      <mat-chip-list>
+          <mat-chip *ngFor="let time of start_end" [selectable]="selectable"
+                  [removable]="removable" (removed)="remove(start_end)">
+            {{time.start}}-{{time.end}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+      </mat-chip-list>
+      </p>
+    </div>
+  </mat-expansion-panel>        
+  <mat-divider></mat-divider>
+
+  <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          frequently used place
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-form-field>
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                     [removable]="removable" (removed)="remove(fruit)">
+              {{fruit.name}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="New places..."
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="addOnBlur"
+                   (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+      </mat-form-field>
+
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-list>
+      <mat-list-item class="title">  
+          notification
+        <div class="slide_container">
+          <mat-slide-toggle
+            class="slide_toggle"
+            [color]="color"
+            [checked]="checked"
+            [disabled]="disabled">
+          </mat-slide-toggle>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item class="title" mat-button> 
+        log out 
+      </mat-list-item>
+</mat-list>
+  
+

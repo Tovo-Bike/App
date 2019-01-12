@@ -1,0 +1,19 @@
+#store-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: auto;
+}
+
+.store-item{
+    display: inline-flex;
+    height: 200px;
+}
+
+.item-img{
+    height: 90%;
+}
+
+*{
+    border: white 1px solid;
+}

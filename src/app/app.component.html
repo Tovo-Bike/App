@@ -1,0 +1,22 @@
+<ng-container>
+  <mat-toolbar>
+    <button mat-button (click)="onToggle()" id="nav-button"><mat-icon>list</mat-icon></button>
+    <span style="margin-left: 16px">{{title}}</span>
+  </mat-toolbar>
+  <mat-sidenav-container class="app-container" *ngIf="true">
+    <mat-sidenav #sidenav mode="over">
+      <mat-nav-list>
+        <mat-list-item *ngFor="let link of links" (click)="onToggle(link.text)" [routerLink]="link.path">
+          <p matLine >{{ link.text }}</p>
+          <button mat-icon-button>
+              <mat-icon><i className="material-icons">directions_bike</i></mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-container>
