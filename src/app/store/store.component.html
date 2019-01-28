@@ -1,6 +1,47 @@
-<div id="store-container">
-  <div *ngFor="let item of list" class="store-item">
-    {{item}}
-    <img src="https://www.freepngimg.com/thumb/skeleton_head/7-2-skeleton-head-picture-thumb.png" alt="skelenton" class="item-img">
-  </div>
-</div>
+
+
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="tab-icon">build</mat-icon>
+      Taker
+    </ng-template>
+    <div id="store-container">
+      <div *ngFor="let item of driverTitles" class="store-item">
+        <div class="img-container">
+          <img [src]="item.image" alt="skelenton" class="item-img">
+        </div>
+        <div class="item-description">
+            <div>{{item.name}}</div>
+            <div>Price: ${{item.price}}</div>
+            <button mat-raised-button color="accent" (click)="buy(item)" *ngIf="item.check === 0">Buy</button>
+            <button mat-raised-button color="accent" (click)="equip(item)" *ngIf="item.check === 1">Equip</button>
+            <button mat-raised-button color="accent" disabled *ngIf="item.check === 2">Equiped</button>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="tab-icon">local_florist</mat-icon>
+      Rider
+    </ng-template>
+    <div id="store-container">
+      <div *ngFor="let item of takerTitles" class="store-item">
+        <div class="img-container">
+          <img [src]="item.image" alt="skelenton" class="item-img">
+        </div>
+        <div class="item-description">
+            <div>{{item.name}}</div>
+            <div>Price: ${{item.price}}</div>
+            <div class="buy-button-container">
+              <button mat-raised-button color="accent" (click)="buy(item)" *ngIf="item.check === 0">Buy</button>
+              <button mat-raised-button color="accent" (click)="equip(item)" *ngIf="item.check === 1">Equip</button>
+              <button mat-raised-button color="accent" disabled *ngIf="item.check === 2">Equiped</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

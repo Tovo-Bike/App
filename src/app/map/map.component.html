@@ -1,51 +1,78 @@
- <div class="map">
+<div class="map">
   <agm-map 
-    [latitude]="lat"
-    [longitude]="lng"
+    [latitude]="center_lat"
+    [longitude]="center_lng"
     [zoom]="zoom"
     [disableDefaultUI]="false"
     [zoomControl]="false"
     (mapClick)="mapClicked($event)">
+    <ng-container *ngIf="!checked">
+      <agm-marker 
+          *ngFor="let m of markers; let i = index"
+          [latitude]="m.lat"
+          [longitude]="m.lng"
+          [markerDraggable]="m.draggable"
+          [label]="m.labelOptions"
+          (dragEnd)="markerDragEnd(m, $event)"
+          >
+          
+        <agm-info-window>
+          <div class="window-div"><strong class="window-text">{{m.content}}</strong></div>
+        </agm-info-window>
 
-    <agm-circle [latitude]="lat" [longitude]="lng" 
-        [radius]="1000"
-        [fillColor]="'orange'"
-        [circleDraggable]="false"
-        [editable]="false">
-    </agm-circle>
-
-    <agm-marker 
-        *ngFor="let m of markers; let i = index"
-        [latitude]="m.lat"
-        [longitude]="m.lng"
-        [label]="m.label">
-        
-      <agm-info-window>
-        <strong>InfoWindow content</strong>
-      </agm-info-window>
-      
-
-    </agm-marker>
+      </agm-marker>
+    </ng-container>
+    <ng-container *ngIf="checked">
+      <agm-marker
+          *ngFor="let m of demands; let i = index"
+          [latitude]="m.start.lat"
+          [longitude]="m.start.lng"
+          [markerDraggable]="m.start.draggable"
+          [label]="m.start.labelOptions"
+          (markerClick)="showDetail(m)"
+          >
+          <agm-info-window>
+            <div class="window-div"><button mat-raised-button (click)="onServe(m.start)">Accept!</button></div>
+          </agm-info-window>
+      </agm-marker>
+      <agm-marker
+          *ngIf="selectStart !== undefined"
+          [latitude]="selectStart.end.lat"
+          [longitude]="selectStart.end.lng"
+          [markerDraggable]="selectStart.end.draggable"
+          [label]="selectStart.end.labelOptions"
+          >
+          <agm-info-window>
+            <div class="window-div"><strong class="window-text">{{selectStart.end.content}}</strong></div>
+          </agm-info-window>
+      </agm-marker>
+    </ng-container>
   </agm-map>
 </div>
 
 <div class="control_bar_container">
-  <div class="rider_bar">
     <mat-slide-toggle
-      [color]="'orange'"
-      [checked]="checked"
-      [disabled]="disabled">
-      <p class="rider"> rider mode</p>
+      color="accent"
+      [(ngModel)]="checked"
+      (change)="onRider()"
+      >
+      <p class="rider"> rider</p>
     </mat-slide-toggle>
-  </div>
-</div>
-
-<div class="input_container">
-    <mat-form-field class="input">
-      <input matInput type="text" placeholder="input search" [(ngModel)]="value">
-    </mat-form-field>
-    <button mat-icon-button class="button">
-        <mat-icon>search</mat-icon>
-    </button>
 </div>
   
+<div class="submit-container" *ngIf="!checked">
+  <button mat-fab [disabled]="markers.length !== 2" (click)="onSubmit()">
+    OK!
+  </button>
+</div>
+<div class="submit-container" *ngIf="checked && go === 1">
+  <button mat-fab (click)="onDeparture()">
+    GO!
+  </button>
+</div>
+
+<div class="submit-container" *ngIf="checked && go === 2">
+  <button mat-fab (click)="onArrive()">
+    DONE
+  </button>
+</div>

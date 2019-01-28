@@ -1,3 +1,16 @@
-<p>
-  history works!
-</p>
+<mat-list>
+  <div id="store-container">
+    <mat-list-item *ngFor="let item of history" class="store-item">
+      <div class="item-description" (click)="rate(item)" matRipple matRippleCentered="true">
+          <div>Data: {{item.start_time.substr(0,10)}}</div>
+          <div>Time: {{item.start_time.substr(11,5).replace('T', ' ')}} ~ {{item.end_time.substr(11,5).replace('T', ' ')}}</div>
+          <div>Total Duration: {{item.duratoin}}</div>
+          <div>Rider: {{item.rider}}</div>
+          <div>Taker: {{item.taker}}</div>
+          <div>Rider Rate: {{item.rider_score}} </div> 
+          <div>Taker Rate: {{item.taker_score}}</div>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </div>
+</mat-list>

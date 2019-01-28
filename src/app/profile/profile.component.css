@@ -1,0 +1,36 @@
+.card{
+	margin: 10px;
+}
+.title{
+	font-size: 1.5em;
+	text-align: center;
+}
+span{
+	margin-left: 14%;
+}
+img{
+	margin-left: 32%;
+  border-radius: 100%;
+  padding: 5px;
+  width: 30vw;
+}
+.content{
+	font-size: 1.2em;
+	margin: 0.6em;
+	margin-top: 3em;
+	line-height: 1.5em;
+}
+.icons{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.button_container{
+	position: absolute;
+	right: 4em;
+	bottom: 2em;
+}
+mat-form-field {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}

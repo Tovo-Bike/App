@@ -7,15 +7,21 @@ import { HistoryComponent } from '@app/history/history.component';
 import { AccountComponent } from '@app/account/account.component';
 import { ProfileComponent } from '@app/profile/profile.component';
 import { SettingComponent } from '@app/setting/setting.component';
+import { LoginComponent } from '@app/login/login.component';
+import { SignupComponent } from '@app/signup/signup.component';
+import { AuthGuard } from '@app/guard/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: MapComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'rank', component: RankComponent},
-  {path: 'store', component: StoreComponent},
-  {path: 'account', component: AccountComponent},
-  {path: 'history', component: HistoryComponent},
-  {path: 'setting', component: SettingComponent}
+  {path: '', redirectTo: 'map', pathMatch: 'full' },
+  {path: 'login', component: LoginComponent},
+  {path: 'signup', component: SignupComponent},
+  {path: 'map', component: MapComponent, canActivate: [AuthGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'rank', component: RankComponent, canActivate: [AuthGuard]},
+  {path: 'store', component: StoreComponent, canActivate: [AuthGuard]},
+  {path: 'account', component: AccountComponent, canActivate: [AuthGuard]},
+  {path: 'history', component: HistoryComponent, canActivate: [AuthGuard]},
+  {path: 'setting', component: SettingComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

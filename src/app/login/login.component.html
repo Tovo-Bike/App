@@ -1,0 +1,23 @@
+<div class="login-container">
+  <h2 class="login-title">Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <mat-form-field class="form-group" appearance="outline" color="primary">
+          <mat-label for="username">Name</mat-label>
+          <input matInput type="text" formControlName="username" (keyup)="loginError=false;" required autocomplete="off"/>
+          <mat-error>Who are u?</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-group" appearance="outline" color="primary">
+          <mat-label for="password">p455w0rd</mat-label>
+          <input matInput type="password" formControlName="password" (keyup)="loginError=false;" required autocomplete="off"/>
+          <mat-error>G1v3 m3 ur P455W0RD</mat-error>
+      </mat-form-field>
+      <mat-error class = "login-error" *ngIf = "loginError"><strong>Try Again！</strong></mat-error>
+      <div class="form-group">
+          <button mat-raised-button color="primary" type="submit" [disabled]="loading">LogIn</button>
+          <button mat-stroked-button color="primary" type="button" [disabled]="loading" (click)="register()">SignUp</button>
+      </div>
+  </form>
+  <div *ngIf="loading" class="loading-shade">
+        <mat-spinner ></mat-spinner>
+  </div>
+</div>

@@ -7,23 +7,8 @@
 .slide_toggle{
     float: right;
 }
-.select{
-    position: relative;
-    width: 80vw;
-    height: 20em;
-    float: none;
-}
-.card{
-    position: relative;
-    width: 50vw;
-    height: 20em;
-    float: none;
-}
+
 .title{
     position: relative;
     float: left;
-}
-.save{
-    position: relative;
-    float: right;
 }

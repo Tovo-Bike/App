@@ -1,0 +1,43 @@
+.content{
+    text-align: center;
+    margin: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.build{
+    margin-right: 10px;
+    color: grey;
+}
+.flower{
+    margin-right: 10px;
+    color: #DE69A5;
+}
+.container{
+    text-align: center;
+}
+.nearme{
+    color: white;
+    margin-right: 5px;
+}
+.gift{
+    color: white;
+    margin-right: 5px;
+}
+.send{
+    color: #F0BC40;
+    margin-right: 5px;
+}
+.receive{
+    color:#10AAEF;
+    margin: 5px;
+}
+.button_build{
+    color: grey;
+    margin-left: 30px;
+}
+.button_flower{
+    color: #DE69A5;
+    margin-left: 30px;
+}

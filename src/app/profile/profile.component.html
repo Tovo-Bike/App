@@ -1,3 +1,66 @@
-<p>
-  profile works!
-</p>
+<div class="card_container">
+  <mat-card class="card">
+      <mat-card-header>
+      </mat-card-header>
+      
+      <mat-card-content>
+          <img [src]="image" alt="profile">
+          <div *ngIf="edit; else checked">
+            <p><mat-icon class="icons">stars</mat-icon>Title： {{title_equipped}}</p>
+            <p>
+              <mat-icon class="icons">account_box</mat-icon>Username：
+              <mat-form-field class="input_width">
+                <input matInput value="{{username}}" [(ngModel)]="username">
+              </mat-form-field>
+            </p>
+            
+            <p>
+              <mat-icon class="icons">mail</mat-icon>Email Address： 
+              <mat-form-field class="input_width">
+                <input matInput value="{{email_address}}" [(ngModel)]="email_address">
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-icon class="icons">fitness_center</mat-icon>Weight：
+              <mat-form-field>
+                <mat-select placeholder="{{weight}}" [(ngModel)]="weight">
+                  <mat-option *ngFor="let weight of weights" [value]="weight.value">
+                    {{weight.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p> 
+              <mat-icon class="icons">face</mat-icon>Gender：
+              <mat-form-field>
+                <mat-select placeholder = "{{gender}}" [(ngModel)]="gender">
+                  <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                    {{gender.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <mat-card-actions>
+                <div class="button_container">
+                  <button mat-button (click)="edit = false;onSubmit()">Save</button>
+                </div>
+            </mat-card-actions>
+          </div>  
+          <ng-template class="content" #checked>
+            <p><mat-icon class="icons">stars</mat-icon>Title： {{title_equipped}}</p>
+            <p><mat-icon class="icons">account_box</mat-icon>Username： {{username}}</p>
+            <p><mat-icon class="icons">mail</mat-icon>Email Address: {{email_address}}</p>
+            <p> <mat-icon class="icons">fitness_center</mat-icon>Weight： {{weight}}</p>
+            <p> <mat-icon class="icons">face</mat-icon>Gender： {{gender}}</p>
+            <mat-card-actions>
+                <div class="button_container">
+                <button mat-button (click)="edit = true">EDIT</button>
+                </div>
+            </mat-card-actions>
+          </ng-template>
+          
+      </mat-card-content>
+      
+    </mat-card>
+</div>
+  

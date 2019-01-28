@@ -1,15 +1,6 @@
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
-import {MatChipInputEvent} from '@angular/material';
-
-export interface Time {
-  value: string;
-  viewValue: string;
-}
-export interface Start_ends {
-  start: string;
-  end: string;
-}
+import { AuthenService } from '@app/services/authen.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'tovo-setting',
@@ -19,8 +10,8 @@ export interface Start_ends {
 export class SettingComponent implements OnInit {
   panelOpenState = false;
   step = 0;
-  
-  times: Time[] = [
+
+  times = [
     {value: 'time/1', viewValue: '1'},
     {value: 'time-2', viewValue: '2'},
     {value: 'time-3', viewValue: '3'},
@@ -53,7 +44,7 @@ export class SettingComponent implements OnInit {
   selectedStart: string;
   selectedEnd: string;
 
-  start_end: Start_ends[] = [
+  start_end = [
 
   ];
 
@@ -64,51 +55,28 @@ export class SettingComponent implements OnInit {
     this.start_end.push({start: this.selectedStart, end: this.selectedEnd});
 
     // initial selectedStart and selectedEnd
-    this.selectedStart='';
-    this.selectedEnd='';
+    this.selectedStart = '';
+    this.selectedEnd = '';
   }
 
-  // remove(time: Start_ends): void {
-  //   const index = this.start_end.indexOf(time);
 
-  //   if (index >= 0) {
-  //     this.start_end.splice(index, 1);
-  //   }
-  // }
+  remove(time): void {
+    const index = this.start_end.indexOf(time);
 
-  // visible = true;
-  // selectable = true;
-  // addOnBlur = true;
-  // readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  // fruits: Fruit[] = [
-  // ];
+    if (index >= 0) {
+      this.start_end.splice(index, 1);
+    }
+  }
 
-  // add2(event: MatChipInputEvent): void {
-  //   const input = event.input;
-  //   const value = event.value;
-
-  //   // Add our fruit
-  //   if ((value || '').trim()) {
-  //     this.fruits.push({name: value.trim()});
-  //   }
-
-  //   // Reset the input value
-  //   if (input) {
-  //     input.value = '';
-  //   }
-  // }
-
-  // remove(fruit: Fruit): void {
-  //   const index = this.fruits.indexOf(fruit);
-
-  //   if (index >= 0) {
-  //     this.fruits.splice(index, 1);
-  //   }
-  // }
-
-  constructor() { }
+  constructor(
+    private  authenService: AuthenService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
-  
+  logout() {
+    this.authenService.logout();
+    this.router.navigate(['login']);
+  }
 }

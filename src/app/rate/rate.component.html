@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Rate Your Trip</h1>
+<div mat-dialog-content >
+  <span style="margin:10px; cursor: pointer;"*ngFor="let star of stars;let i = index">
+      <mat-icon *ngIf="star" (click)="rate(i)">star</mat-icon>
+      <mat-icon *ngIf="!star" (click)="rate(i)">star_border</mat-icon>
+  </span>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="score">Confirm</button>
+  <button mat-button [mat-dialog-close]="-1">Cancel</button>
+</div>

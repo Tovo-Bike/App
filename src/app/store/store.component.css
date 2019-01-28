@@ -7,13 +7,36 @@
 
 .store-item{
     display: inline-flex;
+    justify-content: center;
+    align-items: center;
     height: 200px;
+    font-size: 1.5em;
+}
+
+.img-container{
+    height: 100px;
+    width: 100px;
+    margin-right: 1em;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .item-img{
-    height: 90%;
+    height: 100%;
 }
 
-*{
-    border: white 1px solid;
+.item-description{
+    display: inline-block;
+    width: 200px;
+}
+
+.tab-icon {
+    margin-right: 8px;
+}
+
+.buy-button-container{
+    padding-top:10px;
+    padding-left:10px;
 }

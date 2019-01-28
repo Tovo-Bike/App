@@ -1,17 +1,52 @@
 <mat-tab-group mat-align-tabs="center">
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">thumb_up</mat-icon>
-      Rider
-    </ng-template>
-    Content 1
-  </mat-tab>
-
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">home</mat-icon>
-      Taker
-    </ng-template>
-    Content 2
-  </mat-tab>
-</mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">build</mat-icon>
+        Taker
+      </ng-template>
+      <mat-card class="example-card" *ngFor="let item of takerInfo; let i = index">
+        <div class="rank"> {{i+1}} </div>
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image">
+            <img [src]="item.image" alt="pic" class="header-image">
+          </div>
+          <mat-card-title>{{item.name}} / {{item.title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="card_content">
+            <mat-icon class="star">star</mat-icon>
+              {{item.score}}
+            <mat-icon class="gear">build</mat-icon>
+              {{item.gear}}
+            <mat-icon class="calendar">calendar_today</mat-icon>
+              {{item.day}}
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+  
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">local_florist</mat-icon>
+        Rider
+      </ng-template>
+      <mat-card class="example-card" *ngFor="let item of riderInfo;let i = index">
+          <div class="rank"> {{i+1}} </div>
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image">
+                <img [src]="item.image" alt="pic" class="header-image">
+            </div>
+            
+            <mat-card-title>{{item.name}} / {{item.title}}</mat-card-title>
+            <mat-card-subtitle></mat-card-subtitle>
+          </mat-card-header>
+          
+          <mat-card-content class="card_content">
+              <mat-icon class="star">star</mat-icon>
+                {{item.score}}
+              <mat-icon class="rose">local_florist</mat-icon>
+                {{item.rose}}
+              <mat-icon class="calendar">calendar_today</mat-icon>
+                {{item.day}}
+          </mat-card-content>
+        </mat-card>
+    </mat-tab>
+  </mat-tab-group>
